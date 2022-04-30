@@ -1,0 +1,52 @@
+div:hover {
+    color:red;
+}
+
+a:active{
+    color:blueviolet;
+}
+
+input:focus{
+    background-color: orange;
+}
+
+.fruits span:first-child {
+    color: chartreuse;
+}
+
+.fruits h3:last-child {
+    color:darkgreen;
+}
+
+.fruits *:nth-child(2n) {
+    color:darkorange;
+}
+
+.box::before {
+    content: "앞!";
+}
+
+.box::after {
+    content: "뒤!";
+    font-size: 30px;
+}
+
+[type="text"] {
+    color:deeppink
+}
+
+.container {
+    width: 300px;
+    margin: auto;
+    background-color: orange;
+
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px;
+    background-color: royalblue;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
