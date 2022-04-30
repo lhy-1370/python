@@ -1,0 +1,114 @@
+.container {
+
+}
+
+.container .item {
+    width: 200px;
+    height: 100px;
+    background-color: tomato;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 4px dotted blue;
+    box-sizing: border-box;
+}
+
+.container .item:nth-child(2) {
+    box-shadow: 10px 20px 30px rgba(0,0,0,0.3);
+}
+
+.container .item:nth-child(3) {
+    opacity: 0.5;
+}
+
+.container2 .item2 {
+    color: yellowgreen;
+    border: 2px solid black;
+    line-height: 2;
+    font-size: 30px;
+    font-style: italic;
+    text-align: center;
+}
+
+.container2 .item2:nth-child(2) {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.container3 .item3 {
+    width: 200px;
+    height: 100px;
+    background-color: orange;
+    margin: 10px;
+    background-image: url("https://heropy.blog/css/images/logo.png");
+    background-size: 80px;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+.container4 {
+    width: 400px;
+    height: 250px;
+    background-color: orange;
+    margin: 50px;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.container4 .item4 {
+    width: 100px;
+    height: 100px;
+    background-color: royalblue;
+}
+
+.container4 .item4:nth-child(1) {
+    position: absolute;
+    left: 40px;
+    bottom: 100px;
+}
+
+.container4 .item4:nth-child(2) {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+}
+
+.container5 {
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+}
+
+.container5 .item5 {
+    width: 100px;
+    height: 100px;
+    background-color: royalblue;
+    border: 2px solid black;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container6 .item6 {
+    width: 100px;
+    height: 100px;
+    background-color: royalblue;
+    margin: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.container6 .item6:nth-child(1):hover {
+    width: 200px;
+    background-color: orange;
+}
+
+.container6 .item6:nth-child(2):hover {
+    transform: rotate(45deg) scale(1.5);
+}
+
+.container6 .item6:nth-child(3):hover {
+    transform: perspective(300px) rotateX(45deg);
+}
