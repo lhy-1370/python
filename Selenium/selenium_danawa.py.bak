@@ -11,6 +11,8 @@ from yaml import parse
 options = webdriver.ChromeOptions()
 options.add_argument("window-size=1000,1000")
 options.add_argument("no-sandbox")
+#options.add_argument("headless")
+
 
 chrome = webdriver.Chrome(r"C:\Users\LHY\Documents\python\Selenium\chromedriver", options=options)
 wait = WebDriverWait(chrome, 10)
@@ -71,7 +73,7 @@ def btn_more():
 def choose_category(text):
     # 카테고리 클릭
     find_visible(category_css[f"{text}"]).click()
-    time.sleep(2)
+    time.sleep(1)
 
     # 더보기 누르기
     btn_more()
@@ -80,28 +82,29 @@ def choose_category(text):
     options = finds_visible("input[name=makerCode] + span")
     i = choose_one(f"{text} 제조사를 골라주세요", [x.text for x in options])
     options[i].click()
-    time.sleep(2)
+    time.sleep(1)
 
     return i
 
 def get_options(text, choosetext, no):
     if text == "메인보드":
         find_visible(f"input[value*='{no}'] + span").click()
+        time.sleep(1)
     elif text == "그래픽카드":
         find_visible(f"input[value*='{no}'] + span").click()
+        time.sleep(1)
     else:
         options = finds_visible(f"input[value*='{no}'] + span")
         i = choose_one(f"{choosetext}를 골라주세요", [x.text for x in options])
         options[i].click()
-
-    time.sleep(2)
+        time.sleep(1)
 
 def get_product():
     # 제품 목록 선택하기
     products = finds_visible("div.scroll_box tr[class^=productList_]")
     i = choose_product("제품을 골라주세요", products)
     products[i].find_element_by_css_selector("a.btn_choice2").click()
-    return (products[i].find_element_by_css_selector("p.subject a").text, products[i].find_element_by_css_selector("span.prod_price").text)
+    time.sleep(1)
 
 category = {
     "cpu": "873",
@@ -119,13 +122,29 @@ category_css = {
 
 chrome.get("https://shop.danawa.com/virtualestimate/?controller=estimateMain&methods=index&marketPlaceSeq=16&logger_kw=dnw_gnb_esti")
 
+# # cpu 카테고리 클릭
+# # rightFrame()
+# find_visible(category_css["cpu"]).click()
+# time.sleep(1)
 
+# # cpu 제조사 불러오기
+# # leftFrame()
+# options = finds_visible("input[name=makerCode] + span")
+
+# i = choose_one("cpu 제조사를 골라주세요", [x.text for x in options])
+# options[i].click()
+# time.sleep(1)
+
+# btn_more()
+
+# 카테고리 - 제조사 불러오기
+i = choose_category("cpu")
+
+#cpu 종류 불러오기
 title = ""
 cpuno = ""
 mainboardno = ""
 graphicno = ""
-
-i = choose_category("cpu")
 if i == 0:
     title = "인텔 CPU종류"
     cpuno = "40"
@@ -137,58 +156,93 @@ elif i == 1:
     mainboardno = "2154"
     graphicno = "3517"
 
+# options = finds_visible(f"div.search_cate_title")
+# # for i in range(len(options)):
+# #     print(f"{i+1}. {options[i].text}")
+# for i in range(len(options)):
+#     if options[i].text == title:
+#         # print(f"yes {i+1}. {options[i].text}")
+#         options[i].find_element_by_xpath('..').find_element_by_css_selector("div button").click()
+#         break
+#     else:
+#         # print(f"no {i+1}. {options[i].text}")
+#         continue
+
+# options = finds_visible(f"input[value*='873|{cpuno}'] + span")
+# # for i in range(len(options)):
+# #     print(f"{i+1}. {options[i].text}")
+# i = choose_one("cpu 종류를 골라주세요", [x.text for x in options])
+# options[i].click()
+
+# time.sleep(1)
+
+# # cpu 제품 목록 선택하기
+# # div.scroll_box tr[class^=productList_] p.subject a
+# # div.scroll_box p.low_price span.prod_price
+# products = finds_visible("div.scroll_box tr[class^=productList_]")
+# i = choose_product("제품을 골라주세요", products)
+# products[i].find_element_by_css_selector("a.btn_choice2").click()
+# time.sleep(1)
+
 get_options("cpu", title, "873|" + cpuno)
-cpus = get_product()
-time.sleep(2)
+get_product()
+
+# # 메인보드 카테고리 클릭
+# # rightFrame()
+# find_visible(category_css["메인보드"]).click()
+# time.sleep(1)
+
+# btn_more()
+
+# options = finds_visible("input[name=makerCode] + span")
+# i = choose_one("메인보드 제조사를 골라주세요", [x.text for x in options])
+# options[i].click()
 
 # 메인보드 선택
 choose_category("메인보드")
 get_options("메인보드", "제품 분류", "875|499|" + mainboardno)
-mainboards = get_product()
-time.sleep(2)
+get_product()
+# if cpuno == "40":
+#     find_visible("input[value*=875|499|2153]").click()
+# elif cpuno == "312287":
+#     find_visible("input[value*=875|499|2154]").click()
+
+# products = finds_visible("div.scroll_box tr[class^=productList_]")
+# i = choose_product("제품을 골라주세요", products)
+# products[i].find_element_by_css_selector("a.btn_choice2").click()
+# time.sleep(1)
 
 # 메모리 선택
 choose_category("메모리")
 get_options("메모리", "사용 장치", "874|278")
-memories = get_product()
-time.sleep(2)
+get_product()
 
-# 그래픽카드 선택
+# products = finds_visible("div.scroll_box tr[class^=productList_]")
+# i = choose_product("제품을 골라주세요", products)
+# products[i].find_element_by_css_selector("a.btn_choice2").click()
+# time.sleep(1)
+
 choose_category("그래픽카드")
 get_options("그래픽카드", "칩셋 제조사", "876|654|" + graphicno)
-graphics = get_product()
-time.sleep(2)
+get_product()
 
-# ssd 선택
 choose_category("ssd")
 get_options("ssd", "제품 분류", "32617|14689")
 get_options("ssd", "디스크 용량", "32617|14691")
-ssds = get_product()
-time.sleep(2)
+get_product()
 
-# 케이스 선택
 choose_category("케이스")
 get_options("케이스", "제품 분류", "879|973")
-cases = get_product()
-time.sleep(2)
+get_product()
 
-# 파워 선택
 choose_category("파워")
 get_options("파워", "제품 분류", "880|1086")
 get_options("파워", "정격출력", "880|1088")
 get_options("파워", "80PLUS인증", "880|13033")
-powers = get_product()
+get_product()
 
-print("cpu : " + cpus[0] + ", " + cpus[1])
-print("mainboards : " + mainboards[0] + ", " + mainboards[1])
-print("memories : " + memories[0] + ", " + memories[1])
-print("graphics : " + graphics[0] + ", " + graphics[1])
-print("ssds : " + ssds[0] + ", " + ssds[1])
-print("cases : " + cases[0] + ", " + cases[1])
-print("powers : " + powers[0] + ", " + powers[1])
-totalprice = int(cpus[1].replace(',','')) + int(mainboards[1].replace(',','')) + int(memories[1].replace(',','')) + int(graphics[1].replace(',','')) + int(ssds[1].replace(',','')) + int(cases[1].replace(',','')) + int(powers[1].replace(',',''))
-print("total price :", totalprice)
 
-time.sleep(10)
+
+time.sleep(5)
 
 chrome.quit()
