@@ -11,6 +11,7 @@ from yaml import parse
 options = webdriver.ChromeOptions()
 options.add_argument("window-size=1000,1000")
 options.add_argument("no-sandbox")
+options.headless=True
 
 chrome = webdriver.Chrome(r"C:\Users\LHY\Documents\python\Selenium\chromedriver", options=options)
 wait = WebDriverWait(chrome, 10)

@@ -1,10 +1,10 @@
-#from selenium import webdriver
-#import time
+from selenium import webdriver
+import time
 
-#browser = webdriver.Chrome(r"C:\Users\LHY\Documents\python\Selenium\chromedriver")
-#browser.get("http://naver.com")
-#time.sleep(10)
-#browser.close()
+browser = webdriver.Chrome("./Selenium/chromedriver")
+browser.get("https://web.lotteibank.com/lotteatm.jsp")
+time.sleep(10)
+browser.close()
 
 
 # from selenium import webdriver
@@ -14,11 +14,3 @@
 # browser.get("http://naver.com")
 # print(browser.title)
 # browser.close()
-
-from sympy import total_degree
-
-
-a = "300,000"
-b = "400,000"
-totalprice = int(a.replace(',',''))+int(b.replace(',',''))
-print("totalprice :", totalprice)
