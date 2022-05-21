@@ -1,0 +1,9 @@
+
+django shrinkers 만드는 명령어
+-- django-admin startproject shrinkers
+
+django 실행 명령어
+-- python manage.py runserver
+
+django shortener 만드는 명령어
+-- python manage.py startapp shortener
