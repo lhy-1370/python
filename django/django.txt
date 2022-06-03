@@ -7,3 +7,23 @@ django 실행 명령어
 
 django shortener 만드는 명령어
 -- python manage.py startapp shortener
+
+Apply all migrations: admin, auth, contenttypes, sessions
+-- python manage.py migrate
+
+Create model
+-- setting.py에 INSTALLED_APPS 에 'shortener' 추가
+-- python manage.py makemigrations shortener
+
+Apply model
+-- python manage.py migrate
+
+슈퍼유저 만들기
+-- python manage.py createsuperuser
+
+python manage.py showmigrations
+python manage.py migrate --fake shortener zero
+python manage.py migrate --fake admin zero
+python manage.py migrate --fake auth zero
+
+pip install -r requirements.txt

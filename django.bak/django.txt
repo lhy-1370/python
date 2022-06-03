@@ -1,0 +1,22 @@
+
+django shrinkers 만드는 명령어
+-- django-admin startproject shrinkers
+
+django 실행 명령어
+-- python manage.py runserver
+
+django shortener 만드는 명령어
+-- python manage.py startapp shortener
+
+Apply all migrations: admin, auth, contenttypes, sessions
+-- python manage.py migrate
+
+Create model
+-- setting.py에 INSTALLED_APPS 에 'shortener' 추가
+-- python manage.py makemigrations shortener
+
+Apply model
+-- python manage.py migrate
+
+슈퍼유저 만들기
+--python manage.py createsuperuser
